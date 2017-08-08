@@ -1,10 +1,17 @@
 import snwin
+import time
+import os
 
-win = snwin.snwin(20,20)
+win = snwin.snwin(15,15)
 win.draw()
 
 while True:
-	di = input('')
-	if di == '2' or di == '4' or di == '5' or di == '6':
-		win.go(di)
-		win.draw()
+	win.go(input(''))
+	if win.lose == True:
+		break
+	win.clearmap()
+	win.draw()
+	time.sleep(0.5)
+
+os.system('clear')
+print('游戏结束！得分:',win.scor)
