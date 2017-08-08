@@ -36,6 +36,7 @@ class snwin:
 		os.system('clear')
 		self.addfood()
 		self.addsnake()
+		print('Scor:',self.scor)
 		for i in self.snmap:
 			for j in i:
 				print(j,end=' ')
@@ -65,6 +66,8 @@ class snwin:
 		if hdblock == self.border:
 			#game over
 			self.lose = True
+		if (self.snhead[0],self.snhead[1]) in self.snbody[1:]:
+			self.lose = True
 		if hdblock == self.snfood:
 			#eat food
 			self.scor += 1
@@ -80,8 +83,8 @@ class snwin:
 			self.mpadd(i[0],i[1],self.snshow)
 		self.mpadd(self.snhead[0],self.snhead[1],self.snhdsh)
 	def spanfood(self):
-		x = random.randint(1,self.width - 2)
-		y = random.randint(1,self.height - 2)
+		x = random.randint(1,self.width - 3)
+		y = random.randint(1,self.height - 3)
 		if (x,y) in self.snbody:
 			self.spanfood()
 		else:
