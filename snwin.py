@@ -1,3 +1,9 @@
+'''
+bfs auto search path
+created by wzq
+version two
+'''
+
 import random
 
 class snwin:
@@ -16,11 +22,16 @@ class snwin:
 	#绘图
 	def draw(self):
 		print('Scor:',self.scor)
+		'''
 		for y in range(self.height):
 			for x in range(self.width):
 				print(self.snmap[x][y],end=' ')
 			print('')
-	
+		'''
+		for i in self.snmap:
+			print(' '.join(i))
+		print('')
+		
 	#移动
 	def go(self,di = 0):
 		if di not in [2,5,4,6]:
@@ -66,7 +77,6 @@ class snwin:
 		self.addsnake()
 		
 	def clearmap(self):
-		del self.snmap
 		self.snmap = [([' '] * self.height) for i in range(self.width)]
 		for i in range(self.width):
 			for j in range(self.height):
