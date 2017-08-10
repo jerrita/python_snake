@@ -15,7 +15,7 @@ win.draw()
 #print('蛇头：',win.snbody[0])
 
 while True:
-	win.go(snake_ai.bfsai(win.snbody[0],win.snmap,win.food,win.width,win.height))
+	win.go(snake_ai.bfsai(win))
 	if win.lose == True:
 		break
 	win.clearmap()

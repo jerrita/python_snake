@@ -14,6 +14,9 @@ class snwin:
 		self.lose = False
 		self.scor = 0
 		self.di = 6
+		self.frame = '#'
+		self.snblock = 'O'
+		self.foodblock = '@'
 		self.snmap = []
 		self.clearmap()
 		self.spanfood()
@@ -50,11 +53,11 @@ class snwin:
 		
 		#碰撞检测
 		old_block = self.snmap[self.snbody[0][0]][self.snbody[0][1]]
-		if old_block == '#':
+		if old_block == self.frame:
 			self.lose = True
-		if old_block == '*':
+		if old_block == self.snblock:
 			self.lose = True
-		if old_block == '@':
+		if old_block == self.foodblock:
 			self.scor += 1
 			self.spanfood()
 		else:
@@ -81,12 +84,12 @@ class snwin:
 		for i in range(self.width):
 			for j in range(self.height):
 				if i == 0 or i == self.width-1 or j == 0 or j == self.height-1:
-					self.snmap[i][j] = '#'
+					self.snmap[i][j] = self.frame
 		
 		
 	def addfood(self):
-		self.snmap[self.food[0]][self.food[1]] = '@'
+		self.snmap[self.food[0]][self.food[1]] = self.foodblock
 		
 	def addsnake(self):
 		for i in self.snbody:
-			self.snmap[i[0]][i[1]] = '*'
+			self.snmap[i[0]][i[1]] = self.snblock

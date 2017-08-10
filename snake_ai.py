@@ -4,10 +4,10 @@ created by wzq
 version one
 '''
 
-def bfsai(head,snmap,food,wid,hei):
-	status = [([False] * hei) for i in range(wid)]
+def bfsai(win):
+	status = [([False] * win.height) for i in range(win.width)]
 	v = []
-	v.append(food)
+	v.append(win.food)
 	step = 1
 	searched = []
 	while len(v) != 0:
@@ -15,28 +15,28 @@ def bfsai(head,snmap,food,wid,hei):
 		search = v.pop()
 		if search in searched: continue
 		else: searched.append(search)
-		mapblock = snmap[search[0]][search[1]] 
-		if search == head: break
-		if mapblock == '*': continue
-		if mapblock == '#': continue
-		if snmap[search[0]+1][search[1]] == ' ':
+		mapblock = win.snmap[search[0]][search[1]] 
+		if search == win.snbody[0]: break
+		if mapblock == win.snblock: continue
+		if mapblock == win.frame: continue
+		if win.snmap[search[0]+1][search[1]] == ' ':
 			status[search[0]+1][search[1]] = step
 			v.insert(0,(search[0]+1,search[1]))
-		if snmap[search[0]-1][search[1]] == ' ':
+		if win.snmap[search[0]-1][search[1]] == ' ':
 			status[search[0]-1][search[1]] = step
 			v.insert(0,(search[0]-1,search[1]))
-		if snmap[search[0]][search[1]+1] == ' ':
+		if win.snmap[search[0]][search[1]+1] == ' ':
 			status[search[0]][search[1]+1] = step
 			v.insert(0,(search[0],search[1]+1))
-		if snmap[search[0]][search[1]-1] == ' ':
+		if win.snmap[search[0]][search[1]-1] == ' ':
 			status[search[0]][search[1]-1] = step
 			v.insert(0,(search[0],search[1]-1))
-	status[food[0]][food[1]] = 1
+	status[win.food[0]][win.food[1]] = 1
 	go = {
-	 2:status[head[0]][head[1]-1],
-	 5:status[head[0]][head[1]+1],
-	 4:status[head[0]-1][head[1]],
-	 6:status[head[0]+1][head[1]]
+	 2:status[win.snbody[0][0]][win.snbody[0][1]-1],
+	 5:status[win.snbody[0][0]][win.snbody[0][1]+1],
+	 4:status[win.snbody[0][0]-1][win.snbody[0][1]],
+	 6:status[win.snbody[0][0]+1][win.snbody[0][1]]
 	}
 	if go[2] == False: del go[2]
 	if go[4] == False: del go[4]
@@ -44,5 +44,5 @@ def bfsai(head,snmap,food,wid,hei):
 	if go[5] == False: del go[5]
 	method = sorted(go.items(), key=lambda d:d[1], reverse = True)
 	if len(method) != 0: return method.pop()[0]
-	print('Kdf ai cannot find the path!')
+	print('the ai is dead')
 	exit()
