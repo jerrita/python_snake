@@ -22,6 +22,6 @@ while True:
 	win.addmap()
 	os.system('clear') 
 	win.draw()
-	time.sleep(0.05)
+	#time.sleep(0.01)
 
 print('游戏结束！分数：',win.scor)

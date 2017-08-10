@@ -15,6 +15,7 @@ class snwin:
 		self.scor = 0
 		self.di = 6
 		self.frame = '#'
+		self.headblock = '●'
 		self.snblock = 'O'
 		self.foodblock = '@'
 		self.snmap = []
@@ -93,3 +94,4 @@ class snwin:
 	def addsnake(self):
 		for i in self.snbody:
 			self.snmap[i[0]][i[1]] = self.snblock
+		self.snmap[self.snbody[0][0]][self.snbody[0][1]] = self.headblock
